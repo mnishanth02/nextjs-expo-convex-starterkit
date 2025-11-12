@@ -32,10 +32,12 @@
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 100
+    "lineWidth": 100,
+    "includes": ["**", "!**/convex/_generated/**"]
   },
   "linter": {
     "enabled": true,
+    "includes": ["**", "!**/convex/_generated/**"],
     "rules": {
       "recommended": true,
       "style": {
@@ -94,12 +96,11 @@
     "linter": {
       "enabled": true
     },
-    "parser": {
-      "tailwindDirectives": true
-    }
+    "parser": {}
   },
   "assist": {
     "enabled": true,
+    "includes": ["**", "!**/convex/_generated/**"],
     "actions": {
       "source": {
         "organizeImports": "on"
@@ -128,15 +129,6 @@
             "noInvalidPositionAtImportRule": "off"
           }
         }
-      }
-    },
-    {
-      "includes": ["**/_generated/**"],
-      "linter": {
-        "enabled": false
-      },
-      "formatter": {
-        "enabled": false
       }
     }
   ]
