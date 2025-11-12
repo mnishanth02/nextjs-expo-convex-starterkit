@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "next-expo-convex-starter",
   "private": true,
   "scripts": {
     "build": "turbo run build",
