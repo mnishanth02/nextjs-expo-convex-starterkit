@@ -30,7 +30,7 @@
     "node": ">=20"
   },
   "resolutions": {
-    "react": "^19.1.0"
+    "react": "19.1.0"
   },
   "dependencies": {
     "husky": "^9.1.7",
