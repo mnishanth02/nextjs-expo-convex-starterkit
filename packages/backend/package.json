@@ -6,6 +6,10 @@
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.18.2",
+  "scripts": {
+    "dev": "convex dev",
+    "dev:setup": "convex dev --configure --until-success"
+  },
   "dependencies": {
     "convex": "^1.29.0"
   }
