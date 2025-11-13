@@ -1,5 +1,5 @@
-import { authClient } from "@repo/auth/client"
 import { useState } from "react"
+import { authClient } from "../../auth/client"
 
 export function useLogout() {
   const [isLoading, setIsLoading] = useState(false)

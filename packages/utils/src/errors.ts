@@ -1,25 +1,4 @@
-/**
- * Auth error codes for standardized error handling
- */
-export type AuthErrorCode =
-  | "INVALID_CREDENTIALS"
-  | "USER_NOT_FOUND"
-  | "EMAIL_ALREADY_EXISTS"
-  | "EMAIL_NOT_VERIFIED"
-  | "WEAK_PASSWORD"
-  | "NETWORK_ERROR"
-  | "SESSION_EXPIRED"
-  | "UNAUTHORIZED"
-  | "UNKNOWN_ERROR"
-
-/**
- * Standardized auth error interface
- */
-export interface AuthError {
-  code: AuthErrorCode
-  message: string
-  originalError?: unknown
-}
+import type { AuthError, AuthErrorCode } from "@repo/types/errors"
 
 /**
  * Parse Better Auth errors into user-friendly messages
@@ -30,7 +9,7 @@ export interface AuthError {
  *
  * @example
  * ```tsx
- * import { parseAuthError } from "@repo/auth/errors"
+ * import { parseAuthError } from "@repo/utils/errors"
  *
  * async function handleSignIn(email: string, password: string) {
  *   try {

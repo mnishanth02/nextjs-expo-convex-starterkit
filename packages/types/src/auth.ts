@@ -1,30 +1,20 @@
-import type { authClient } from "./client"
-
-/**
- * Infer user type from Better Auth client
- * This represents the authenticated user object
- */
-export type User = NonNullable<Awaited<ReturnType<typeof authClient.getSession>>>["user"]
-
-/**
- * Infer session type from Better Auth client
- * This represents the active auth session
- */
-export type Session = NonNullable<Awaited<ReturnType<typeof authClient.getSession>>>["session"]
-
 /**
  * Auth state interface for components
  * Represents the current authentication status
+ *
+ * NOTE: User and Session types should be inferred from your auth client in each app:
+ * - Web: `import type { User, Session } from "~/lib/auth/client"`
+ * - Native: `import type { User, Session } from "~/lib/auth/client"`
  */
-export interface AuthState {
+export interface AuthState<TUser = unknown, TSession = unknown> {
   /** Whether user is authenticated */
   isAuthenticated: boolean
   /** Whether auth state is being loaded */
   isLoading: boolean
   /** Current user object or null if not authenticated */
-  user: User | null
+  user: TUser | null
   /** Current session object or null if not authenticated */
-  session: Session | null
+  session: TSession | null
   /** Any error that occurred during auth */
   error?: Error | null
 }

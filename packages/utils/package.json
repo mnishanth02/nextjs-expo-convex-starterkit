@@ -1,0 +1,30 @@
+{
+  "name": "@repo/utils",
+  "version": "1.0.0",
+  "description": "Shared utility functions for web and native apps",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./errors": "./src/errors.ts",
+    "./id": "./src/id.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "typescript": "latest"
+  },
+  "keywords": [
+    "utils",
+    "utilities",
+    "shared",
+    "helpers"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.2"
+}

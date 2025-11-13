@@ -1,24 +1,26 @@
+import type { AuthState } from "@repo/types/auth"
 import { useQuery } from "convex/react"
 import type { FunctionReference } from "convex/server"
+import type { Session, User } from "./client"
 import { authClient } from "./client"
 
 /**
  * Hook to check authentication state and get user info
- * Works in both Next.js and React Native
+ * Expo-specific implementation using Better Auth React hooks
  *
  * @example
  * ```tsx
  * function Profile() {
  *   const { isAuthenticated, isLoading, user } = useAuthState()
  *
- *   if (isLoading) return <div>Loading...</div>
- *   if (!isAuthenticated) return <div>Please sign in</div>
+ *   if (isLoading) return <Text>Loading...</Text>
+ *   if (!isAuthenticated) return <Text>Please sign in</Text>
  *
- *   return <div>Hello {user?.name}</div>
+ *   return <Text>Hello {user?.name}</Text>
  * }
  * ```
  */
-export function useAuthState() {
+export function useAuthState(): AuthState<User, Session> {
   const { data: session, isPending, error } = authClient.useSession()
 
   return {
@@ -26,7 +28,7 @@ export function useAuthState() {
     isLoading: isPending,
     user: session?.user ?? null,
     session: session?.session ?? null,
-    error,
+    error: error as Error | null | undefined,
   }
 }
 
@@ -41,10 +43,10 @@ export function useAuthState() {
  * function UserDashboard() {
  *   const userData = useAuthenticatedQuery(api.users.getCurrentUserData, {})
  *
- *   if (userData === undefined) return <div>Loading...</div>
- *   if (userData === null) return <div>Not authenticated</div>
+ *   if (userData === undefined) return <Text>Loading...</Text>
+ *   if (userData === null) return <Text>Not authenticated</Text>
  *
- *   return <div>Welcome {userData.name}</div>
+ *   return <Text>Welcome {userData.name}</Text>
  * }
  * ```
  */
@@ -74,7 +76,7 @@ export function useAuthenticatedQuery<Query extends FunctionReference<"query">>(
  *
  *   const handleSubmit = async () => {
  *     if (!userId) {
- *       alert('Please sign in')
+ *       Alert.alert('Please sign in')
  *       return
  *     }
  *     // Create post with userId
@@ -97,9 +99,10 @@ export function useUserId(): string | null {
  *   const isAuthenticated = useIsAuthenticated()
  *
  *   return (
- *     <button disabled={!isAuthenticated}>
- *       {isAuthenticated ? 'Submit' : 'Sign in to submit'}
- *     </button>
+ *     <Button
+ *       disabled={!isAuthenticated}
+ *       title={isAuthenticated ? 'Submit' : 'Sign in to submit'}
+ *     />
  *   )
  * }
  * ```

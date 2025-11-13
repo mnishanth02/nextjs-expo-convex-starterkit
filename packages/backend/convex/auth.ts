@@ -1,3 +1,4 @@
+import { expo } from "@better-auth/expo"
 import { createClient, type GenericCtx } from "@convex-dev/better-auth"
 import { convex } from "@convex-dev/better-auth/plugins"
 import { betterAuth } from "better-auth"
@@ -34,10 +35,17 @@ export const createAuth = (
 
     trustedOrigins:
       process.env.NODE_ENV === "production"
-        ? [process.env.SITE_URL!, process.env.SITE_URL1!].filter((url): url is string =>
-            Boolean(url)
-          )
-        : ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"],
+        ? [
+            process.env.SITE_URL!,
+            process.env.SITE_URL1!,
+            "native://", // Expo app scheme
+          ].filter((url): url is string => Boolean(url))
+        : [
+            "http://localhost:3000",
+            "http://localhost:3001",
+            "http://localhost:3002",
+            "native://", // Expo app scheme
+          ],
 
     emailAndPassword: {
       enabled: true,
@@ -53,10 +61,8 @@ export const createAuth = (
         clientSecret: process.env.APPLE_CLIENT_SECRET!,
       },
     },
-    plugins: [
-      // The Convex plugin is required for Convex compatibility
-      convex(),
-    ],
+    // The Expo and Convex plugins are required for this setup
+    plugins: [expo(), convex()],
   })
 }
 

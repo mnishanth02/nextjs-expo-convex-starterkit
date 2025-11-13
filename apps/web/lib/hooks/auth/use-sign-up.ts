@@ -1,7 +1,7 @@
-import { authClient } from "@repo/auth/client"
-import { parseAuthError } from "@repo/auth/errors"
+import { parseAuthError } from "@repo/utils/errors"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { authClient } from "../../auth/client"
 import type { SignUpInput } from "../../schemas/auth"
 
 export function useSignUp() {

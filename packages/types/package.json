@@ -1,0 +1,28 @@
+{
+  "name": "@repo/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types for web and native apps",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./auth": "./src/auth.ts",
+    "./errors": "./src/errors.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "typescript": "latest"
+  },
+  "keywords": [
+    "types",
+    "typescript",
+    "auth",
+    "shared"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.2"
+}
