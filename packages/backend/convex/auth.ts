@@ -6,7 +6,7 @@ import { components } from "./_generated/api"
 import type { DataModel } from "./_generated/dataModel"
 import { query } from "./_generated/server"
 
-const siteUrl = process.env.SITE_URL!
+const siteUrl = process.env.CONVEX_SITE_URL || process.env.SITE_URL!
 
 /**
  * Auth component client - provides helper methods for interacting with Better Auth in Convex
@@ -37,7 +37,7 @@ export const createAuth = (
       process.env.NODE_ENV === "production"
         ? [
             process.env.SITE_URL!,
-            process.env.SITE_URL1!,
+            process.env.CONVEX_SITE_URL!,
             "native://", // Expo app scheme
           ].filter((url): url is string => Boolean(url))
         : [
@@ -53,12 +53,12 @@ export const createAuth = (
     },
     socialProviders: {
       google: {
-        clientId: process.env.GOOGLE_CLIENT_ID!,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        clientId: process.env.GOOGLE_CLIENT_ID || "",
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       },
       apple: {
-        clientId: process.env.APPLE_CLIENT_ID!,
-        clientSecret: process.env.APPLE_CLIENT_SECRET!,
+        clientId: process.env.APPLE_CLIENT_ID || "",
+        clientSecret: process.env.APPLE_CLIENT_SECRET || "",
       },
     },
     // The Expo and Convex plugins are required for this setup

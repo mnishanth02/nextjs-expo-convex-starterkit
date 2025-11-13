@@ -111,3 +111,8 @@ export function useIsAuthenticated(): boolean {
   const { isAuthenticated } = useAuthState()
   return isAuthenticated
 }
+
+export { useLogout } from "./hooks/use-logout"
+// Re-export auth action hooks
+export { useSignIn } from "./hooks/use-sign-in"
+export { useSignUp } from "./hooks/use-sign-up"
