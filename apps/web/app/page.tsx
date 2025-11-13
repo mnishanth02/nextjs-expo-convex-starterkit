@@ -1,6 +1,7 @@
 "use client"
 
 import { api } from "@repo/backend/convex/_generated/api"
+import { Button } from "@repo/webui/components/button"
 import { useQuery } from "convex/react"
 
 const TITLE_TEXT = `Starter Kit: Next.js App Router + TypeScript + Tailwind CSS + Convex
@@ -8,7 +9,6 @@ const TITLE_TEXT = `Starter Kit: Next.js App Router + TypeScript + Tailwind CSS 
 
 export default function Home() {
   const healthCheck = useQuery(api.healthCheck.get)
-  console.log(healthCheck)
 
   return (
     <div className="container mx-auto flex h-screen max-w-3xl flex-col items-center justify-center px-4 py-2">
@@ -28,6 +28,9 @@ export default function Home() {
                   : "Error"}
             </span>
           </div>
+          <Button variant="destructive" className="mt-4">
+            Refresh Status
+          </Button>
         </section>
       </div>
     </div>
