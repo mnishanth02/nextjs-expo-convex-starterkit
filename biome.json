@@ -96,7 +96,9 @@
     "linter": {
       "enabled": true
     },
-    "parser": {}
+    "parser": {
+      "tailwindDirectives": true
+    }
   },
   "assist": {
     "enabled": true,
