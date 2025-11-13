@@ -6,7 +6,7 @@ import type { ReactNode } from "react"
 import { authClient } from "@/lib/auth-client"
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!, {
-  //TODO - remove this later- Optionally pause queries until the user is authenticated
+  // Don't require auth for initial queries - let Better Auth handle it
   expectAuth: false,
 })
 

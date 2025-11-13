@@ -1,0 +1,58 @@
+{
+  "name": "@repo/auth",
+  "version": "1.0.0",
+  "description": "Shared authentication utilities for Better Auth + Convex",
+  "type": "module",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.js"
+    },
+    "./errors": {
+      "types": "./dist/errors.d.ts",
+      "import": "./dist/errors.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "dev": "tsc --project tsconfig.build.json --watch"
+  },
+  "dependencies": {
+    "@convex-dev/better-auth": "^0.9.7",
+    "better-auth": "1.3.34",
+    "convex": "^1.29.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "typescript": "latest"
+  },
+
+  "keywords": [
+    "auth",
+    "better-auth",
+    "convex",
+    "authentication",
+    "react",
+    "react-native"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.2"
+}
