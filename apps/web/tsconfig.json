@@ -3,8 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@repo/webui/*": ["../../packages/ui/src/*"]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
