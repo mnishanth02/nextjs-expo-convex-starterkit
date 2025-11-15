@@ -14,7 +14,6 @@
     "check": "biome check --write .",
     "upgrade:all": "pnpm -r up --latest",
     "prepare": "husky",
-    "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F @repo/backend dev",
     "dev:setup": "turbo -F @repo/backend dev:setup"

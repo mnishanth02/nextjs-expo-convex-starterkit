@@ -32,6 +32,11 @@ export const createAuth = (
       level: "debug",
     },
     baseURL: siteUrl,
+    trustedOrigins: [
+      "native://", // Production Expo app scheme
+      "exp://", // Expo Go development
+      "http://localhost:8081", // Expo Metro bundler
+    ],
     secret: process.env.BETTER_AUTH_SECRET as string,
     database: authComponent.adapter(ctx),
 

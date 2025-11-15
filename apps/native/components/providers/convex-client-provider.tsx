@@ -14,6 +14,7 @@ if (!CONVEX_URL) {
 const convex = new ConvexReactClient(CONVEX_URL, {
   // Don't require auth for initial queries - let Better Auth handle it
   expectAuth: false,
+  unsavedChangesWarning: false,
 })
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {

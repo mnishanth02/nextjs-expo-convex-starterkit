@@ -25,6 +25,26 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome{user?.name ? `, ${user.name}` : ""}!</ThemedText>
         <HelloWave />
       </ThemedView>
+
+      {/* User Info Section */}
+      {user && (
+        <ThemedView style={styles.userInfoContainer}>
+          <ThemedView style={styles.userInfoCard}>
+            <ThemedText type="subtitle" style={styles.userInfoTitle}>
+              Your Account
+            </ThemedText>
+            <ThemedView style={styles.userInfoRow}>
+              <ThemedText style={styles.userInfoLabel}>Name:</ThemedText>
+              <ThemedText style={styles.userInfoValue}>{user.name || "Not provided"}</ThemedText>
+            </ThemedView>
+            <ThemedView style={styles.userInfoRow}>
+              <ThemedText style={styles.userInfoLabel}>Email:</ThemedText>
+              <ThemedText style={styles.userInfoValue}>{user.email || "Not provided"}</ThemedText>
+            </ThemedView>
+          </ThemedView>
+        </ThemedView>
+      )}
+
       <ThemedView style={styles.stepContainer}>
         <Pressable
           style={({ pressed }) => [
@@ -135,5 +155,38 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "600",
+  },
+  userInfoContainer: {
+    marginBottom: 16,
+  },
+  userInfoCard: {
+    padding: 16,
+    borderRadius: 12,
+    backgroundColor: "rgba(59, 130, 246, 0.1)",
+    borderWidth: 1,
+    borderColor: "rgba(59, 130, 246, 0.2)",
+  },
+  userInfoTitle: {
+    marginBottom: 12,
+    color: "#3B82F6",
+  },
+  userInfoRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(229, 231, 235, 0.3)",
+  },
+  userInfoLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#6B7280",
+  },
+  userInfoValue: {
+    fontSize: 14,
+    flex: 1,
+    textAlign: "right",
+    marginLeft: 16,
   },
 })

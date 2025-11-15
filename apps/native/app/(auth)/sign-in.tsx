@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native"
-import { AuthButton, AuthInput } from "@/components/auth"
+import { AuthButton, AuthInput, GoogleSignInButton } from "@/components/auth"
 import { useSignIn } from "@/lib/auth/hooks"
 import { type SignInInput, signInSchema } from "@/lib/schemas/auth"
 
@@ -97,6 +97,14 @@ export default function SignInScreen() {
             />
 
             <AuthButton title="Sign In" onPress={handleSubmit(onSubmit)} loading={isLoading} />
+
+            <View style={styles.divider}>
+              <View style={styles.dividerLine} />
+              <Text style={styles.dividerText}>OR</Text>
+              <View style={styles.dividerLine} />
+            </View>
+
+            <GoogleSignInButton />
           </View>
 
           <View style={styles.footer}>
@@ -154,5 +162,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: "#3B82F6",
+  },
+  divider: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 16,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "#E5E7EB",
+  },
+  dividerText: {
+    marginHorizontal: 12,
+    fontSize: 14,
+    color: "#6B7280",
+    fontWeight: "500",
   },
 })
