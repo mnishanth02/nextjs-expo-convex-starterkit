@@ -21,6 +21,7 @@ import {
 import { Input } from "@repo/webui/components/input"
 import Link from "next/link"
 import { Controller, useForm } from "react-hook-form"
+import { GoogleSignInButton } from "@/components/auth/google-sign-in-button"
 import { useSignUp } from "@/lib/hooks/auth/use-sign-up"
 import { type SignUpInput, signUpSchema } from "@/lib/schemas/auth"
 
@@ -141,6 +142,18 @@ export default function SignUpPage() {
           <Button type="submit" form="sign-up-form" className="w-full" disabled={isLoading}>
             {isLoading ? "Creating account..." : "Sign Up"}
           </Button>
+
+          <div className="relative w-full">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+            </div>
+          </div>
+
+          <GoogleSignInButton className="w-full" />
+
           <p className="text-center text-muted-foreground text-sm">
             {"Already have an account? "}
             <Link href="/sign-in" className="font-medium text-primary hover:underline">

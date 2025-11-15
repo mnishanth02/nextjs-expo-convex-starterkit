@@ -6,7 +6,7 @@ import { components } from "./_generated/api"
 import type { DataModel } from "./_generated/dataModel"
 import { query } from "./_generated/server"
 
-const siteUrl = process.env.CONVEX_SITE_URL || process.env.SITE_URL!
+const siteUrl = process.env.SITE_URL as string
 
 /**
  * Auth component client - provides helper methods for interacting with Better Auth in Convex
@@ -29,23 +29,18 @@ export const createAuth = (
     // Disable logging when createAuth is called just to generate options
     logger: {
       disabled: optionsOnly,
+      level: "debug",
     },
     baseURL: siteUrl,
+    secret: process.env.BETTER_AUTH_SECRET as string,
     database: authComponent.adapter(ctx),
 
-    trustedOrigins:
-      process.env.NODE_ENV === "production"
-        ? [
-            process.env.SITE_URL!,
-            process.env.CONVEX_SITE_URL!,
-            "native://", // Expo app scheme
-          ].filter((url): url is string => Boolean(url))
-        : [
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://localhost:3002",
-            "native://", // Expo app scheme
-          ],
+    account: {
+      accountLinking: {
+        enabled: true,
+        allowDifferentEmails: true,
+      },
+    },
 
     emailAndPassword: {
       enabled: true,
@@ -53,13 +48,15 @@ export const createAuth = (
     },
     socialProviders: {
       google: {
-        clientId: process.env.GOOGLE_CLIENT_ID || "",
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+        clientId: process.env.GOOGLE_CLIENT_ID as string,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+        accessType: "offline",
+        prompt: "select_account consent",
       },
-      apple: {
-        clientId: process.env.APPLE_CLIENT_ID || "",
-        clientSecret: process.env.APPLE_CLIENT_SECRET || "",
-      },
+      // apple: {
+      //   clientId: process.env.APPLE_CLIENT_ID || "",
+      //   clientSecret: process.env.APPLE_CLIENT_SECRET || "",
+      // },
     },
     // The Expo and Convex plugins are required for this setup
     plugins: [expo(), convex()],
@@ -69,7 +66,11 @@ export const createAuth = (
 export const getCurrentUser = query({
   args: {},
   handler: async (ctx) => {
-    return authComponent.getAuthUser(ctx)
+    try {
+      return await authComponent.getAuthUser(ctx)
+    } catch {
+      return null
+    }
   },
 })
 
