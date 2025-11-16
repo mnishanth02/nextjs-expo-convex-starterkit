@@ -52,8 +52,7 @@
           }
         }
       ],
-      "expo-secure-store",
-      "nativewind/expo"
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,

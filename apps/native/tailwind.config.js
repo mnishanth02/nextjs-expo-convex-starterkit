@@ -7,6 +7,9 @@ module.exports = {
     "./lib/**/*.{js,jsx,ts,tsx}",
   ],
 
+  // Add NativeWind preset
+  presets: [require("nativewind/preset")],
+
   // Enable dark mode support
   darkMode: "class",
 
