@@ -1,0 +1,40 @@
+{
+  "name": "@repo/native-ui",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*.tsx"
+  },
+  "dependencies": {
+    "@gluestack-ui/nativewind-utils": "^1.0.28",
+    "@gluestack-ui/react-native-aria": "^0.1.7",
+    "@legendapp/motion": "^2.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "nativewind": "^4.1.23",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17"
+  },
+  "peerDependencies": {
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "@types/react": "~19.1.0"
+  },
+  "keywords": [],
+  "author": "Nishanth Murugan",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.2"
+}
