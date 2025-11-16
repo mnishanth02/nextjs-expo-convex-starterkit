@@ -25,7 +25,10 @@
       "!**/.alchemy",
       "!**/.svelte-kit",
       "!**/wrangler.jsonc",
-      "!**/.source"
+      "!**/.source",
+      "!**/android",
+      "!**/ios/build",
+      "!**/ios/Pods"
     ]
   },
   "formatter": {
