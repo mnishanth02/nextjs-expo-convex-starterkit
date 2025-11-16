@@ -3,9 +3,11 @@ import { Stack } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import Toast from "react-native-toast-message"
 import "react-native-reanimated"
+import "../global.css"
 
 import { AuthLoading } from "@/components/auth"
 import { ConvexClientProvider } from "@/components/providers/convex-client-provider"
+import { GluestackProvider } from "@/components/providers/gluestack-provider"
 import { useColorScheme } from "@/hooks/use-color-scheme"
 import { useAuthState } from "@/lib/auth/hooks"
 
@@ -49,7 +51,9 @@ function RootNavigator() {
 export default function RootLayout() {
   return (
     <ConvexClientProvider>
-      <RootNavigator />
+      <GluestackProvider>
+        <RootNavigator />
+      </GluestackProvider>
     </ConvexClientProvider>
   )
 }
