@@ -1,10 +1,10 @@
-import { useRouter } from "expo-router"
 import { useState } from "react"
 import Toast from "react-native-toast-message"
 import { authClient } from "../client"
 
 /**
  * Hook for logging out the user
+ * Navigation is handled automatically by Stack.Protected when auth state changes
  *
  * @example
  * ```tsx
@@ -23,7 +23,6 @@ import { authClient } from "../client"
  */
 export function useLogout() {
   const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
 
   const logout = async () => {
     try {
@@ -36,9 +35,8 @@ export function useLogout() {
         text1: "Logged out successfully",
       })
 
-      // Navigate to sign-in screen
-      // biome-ignore lint/suspicious/noExplicitAny: Typed routes will be generated on app start
-      router.replace("/(auth)/sign-in" as any)
+      // Auth state will change to isAuthenticated: false
+      // Stack.Protected will automatically redirect to /(auth)/sign-in
     } catch {
       Toast.show({
         type: "error",
