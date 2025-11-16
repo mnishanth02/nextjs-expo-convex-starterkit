@@ -56,7 +56,7 @@ export const createAuth = (
         clientId: process.env.NATIVE_GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.NATIVE_GOOGLE_CLIENT_SECRET as string,
         accessType: "offline",
-        prompt: "select_account consent",
+        prompt: "select_account",
       },
       // apple: {
       //   clientId: process.env.APPLE_CLIENT_ID || "",

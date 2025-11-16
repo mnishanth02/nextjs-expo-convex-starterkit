@@ -1,5 +1,4 @@
 import { parseAuthError } from "@repo/utils/errors"
-import { useRouter } from "expo-router"
 import { useState } from "react"
 import Toast from "react-native-toast-message"
 import type { SignUpInput } from "../../schemas/auth"
@@ -8,7 +7,6 @@ import { authClient } from "../client"
 export function useSignUp() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
 
   const signUp = async (data: SignUpInput) => {
     setIsLoading(true)
@@ -32,13 +30,12 @@ export function useSignUp() {
         return { success: false, error: errorMessage }
       }
 
-      // Success - redirect to home tab
+      // Success - auth state change will trigger automatic navigation
       Toast.show({
         type: "success",
         text1: "Account Created!",
         text2: "Welcome aboard!",
       })
-      router.replace("/(tabs)")
       return { success: true }
     } catch {
       const errorMessage = "An unexpected error occurred. Please try again"
